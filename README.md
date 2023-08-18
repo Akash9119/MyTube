@@ -38,7 +38,7 @@ Copy code
 yarn install
 Create a RapidAPI account and obtain an API key for the "YouTube" API.
 
-Rename the .env file to .env and add your RapidAPI API key:
+Add .env file and add your RapidAPI API key:You can get the api from https://rapidapi.com/Glavier/api/youtube138/
 
 makefile
 Copy code
