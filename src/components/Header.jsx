@@ -15,6 +15,7 @@ import Loader from "../shared/loader";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
+    const [showFloatingBox, setShowFloatingBox] = useState(true); // New state
 
     const { loading, mobileMenu, setMobileMenu } = useContext(Context);
 
@@ -36,9 +37,28 @@ const Header = () => {
     const { pathname } = useLocation();
     const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
 
+    const closeFloatingBox = () => {
+        setShowFloatingBox(false);
+    };
+
     return (
         <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-white dark:bg-black">
             {loading && <Loader />}
+            {showFloatingBox && ( // Conditionally render the floating box
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 bg-gray-100 p-4 border border-gray-300 shadow-md rounded-md w-100">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="text-4xl text-gray-600">
+                            This is just a sample response and left-Menu and search will not work in this.
+                        </p>
+                        <button onClick={closeFloatingBox}>
+                            <CgClose className="text-gray-500" />
+                        </button>
+                    </div>
+                    <p className="text-2xl text-gray-400">
+                        Please go through the README and get your API key to see the full functionality of the code.
+                    </p>
+                </div>
+            )}
 
             <div className="flex h-5 items-center">
                 {pageName !== "video" && (
